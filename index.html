@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cayden Bird</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -22,17 +18,14 @@
         }
 
         body.about-bg {
-            background: url('https://images.unsplash.com/photo-1570110738005-4cf11d2c84d1?w=1920&q=80') center center / cover no-repeat fixed;
+            background: url('snowboard.png') center center / cover no-repeat fixed;
         }
 
         body.about-bg::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(10, 13, 18, 0.55) 0%, rgba(10, 13, 18, 0.75) 100%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(6, 8, 12, 0.72);
             pointer-events: none;
             z-index: 0;
         }
@@ -40,11 +33,8 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
                 radial-gradient(ellipse at 20% 30%, rgba(79, 172, 254, 0.08) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 70%, rgba(142, 202, 230, 0.06) 0%, transparent 50%);
             pointer-events: none;
@@ -52,7 +42,7 @@
         }
 
         .container {
-            max-width: 750px;
+            max-width: 680px;
             margin: 0 auto;
             padding: 100px 40px 60px;
             position: relative;
@@ -61,9 +51,7 @@
 
         .nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             display: flex;
             justify-content: center;
             gap: 40px;
@@ -82,78 +70,63 @@
             transition: all 0.2s ease;
         }
 
-        .nav-item:hover {
-            color: #fff;
-        }
+        .nav-item:hover { color: #fff; }
+        .nav-item.active { color: #fff; }
 
-        .nav-item.active {
-            color: #fff;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h1 {
-            font-size: 52px;
+            font-size: 48px;
             color: #fff;
-            margin-bottom: 18px;
+            margin-bottom: 6px;
             font-weight: 500;
             letter-spacing: -0.02em;
         }
 
-        h2 {
-            font-size: 24px;
-            color: #fff;
-            margin-bottom: 35px;
-            font-weight: 500;
-        }
-
-        h3 {
-            font-size: 18px;
-            color: #fff;
-            margin-top: 45px;
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
+        h2 { font-size: 24px; color: #fff; margin-bottom: 35px; font-weight: 500; }
+        h3 { font-size: 18px; color: #fff; margin-top: 45px; margin-bottom: 25px; font-weight: 500; }
 
         .subtitle {
-            font-size: 17px;
-            color: #999;
-            margin-bottom: 40px;
-            font-weight: 400;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 44px;
+            letter-spacing: 0.04em;
         }
 
-        .bio {
-            font-size: 17px;
-            line-height: 1.9;
-            color: #c8c8c8;
-            margin-bottom: 28px;
-            max-width: 680px;
-        }
-
-        .languages {
+        .bio-block {
             font-size: 16px;
-            color: #999;
-            margin-top: 28px;
-            line-height: 1.6;
+            line-height: 1.85;
+            color: #b8b8b8;
+            max-width: 620px;
         }
+
+        .bio-block p { margin-bottom: 20px; }
+        .bio-block p:last-child { margin-bottom: 0; }
+
+        .divider {
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            margin: 36px 0;
+        }
+
+        .contact-row { display: flex; gap: 24px; flex-wrap: wrap; }
+
+        .contact-row a {
+            font-size: 14px;
+            color: #ccc;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .contact-row a:hover { color: #fff; border-bottom-color: #fff; }
 
         .experience-item, .volunteer-item {
             margin-bottom: 28px;
@@ -161,49 +134,13 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .experience-item:last-child, .volunteer-item:last-child {
-            border-bottom: none;
-        }
+        .experience-item:last-child, .volunteer-item:last-child { border-bottom: none; }
 
-        .job-title {
-            font-size: 16px;
-            font-weight: 400;
-            color: #fff;
-            margin-bottom: 6px;
-        }
+        .job-title { font-size: 16px; font-weight: 400; color: #fff; margin-bottom: 6px; }
+        .company { font-size: 15px; color: #888; margin-bottom: 4px; }
+        .date { font-size: 14px; color: #666; }
 
-        .company {
-            font-size: 15px;
-            color: #888;
-            margin-bottom: 4px;
-        }
-
-        .date {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .contact-info {
-            font-size: 16px;
-            line-height: 2.2;
-            color: #b0b0b0;
-        }
-
-        .contact-info a {
-            color: #fff;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            transition: border-color 0.2s ease;
-        }
-
-        .contact-info a:hover {
-            border-bottom-color: #fff;
-        }
-
-        .cert-list {
-            list-style: none;
-            margin-top: 20px;
-        }
+        .cert-list { list-style: none; margin-top: 20px; }
 
         .cert-list li {
             font-size: 15px;
@@ -227,15 +164,8 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .project-item:last-child {
-            border-bottom: none;
-        }
-
-        .project-title {
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 8px;
-        }
+        .project-item:last-child { border-bottom: none; }
+        .project-title { font-size: 16px; font-weight: 400; margin-bottom: 8px; }
 
         .project-title a {
             color: #fff;
@@ -244,15 +174,8 @@
             transition: border-color 0.2s ease;
         }
 
-        .project-title a:hover {
-            border-bottom-color: #fff;
-        }
-
-        .project-desc {
-            font-size: 15px;
-            color: #888;
-            line-height: 1.6;
-        }
+        .project-title a:hover { border-bottom-color: #fff; }
+        .project-desc { font-size: 15px; color: #888; line-height: 1.6; }
 
         .github-link {
             display: inline-block;
@@ -264,31 +187,25 @@
             transition: border-color 0.2s ease;
         }
 
-        .github-link:hover {
-            border-bottom-color: #fff;
+        .github-link:hover { border-bottom-color: #fff; }
+
+        .contact-info { font-size: 16px; line-height: 2.2; color: #b0b0b0; }
+
+        .contact-info a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: border-color 0.2s ease;
         }
 
+        .contact-info a:hover { border-bottom-color: #fff; }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 90px 30px 50px;
-            }
-
-            .nav {
-                gap: 25px;
-                padding: 16px 0;
-            }
-
-            .nav-item {
-                font-size: 13px;
-            }
-
-            h1 {
-                font-size: 36px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
+            .container { padding: 90px 30px 50px; }
+            .nav { gap: 25px; padding: 16px 0; }
+            .nav-item { font-size: 13px; }
+            h1 { font-size: 34px; }
+            h2 { font-size: 20px; }
         }
     </style>
 </head>
@@ -302,92 +219,100 @@
     </nav>
 
     <div class="container">
+
         <div class="tab-content active" id="about">
             <h1>Cayden Bird</h1>
-            <div class="subtitle">Based in the Washington D.C. area • Nashville, TN for school</div>
-            <p class="bio">
-                I am a Computer Science and Economics student at Vanderbilt University who is interested in the intersection of technology, markets, and organizational strategy. My coursework and project experience have strengthened my analytical abilities and my approach to breaking down complex problems, whether through economic modeling or technical research. I am drawn to roles where I can combine technical literacy with business judgment to help teams assess systems, interpret data, improve processes, and make informed strategic decisions. I am especially motivated by opportunities that allow me to work with clients, tackle diverse challenges, and bridge the gap between technical possibilities and practical business needs. 
-            </p>
-            <div class="languages">
-                Languages: English (Native), Korean (Elementary), Latin (Professional Working)
+            <div class="subtitle">Washington D.C. &nbsp;&mdash;&nbsp; Nashville, TN &nbsp;&mdash;&nbsp; wherever there's fresh pow</div>
+
+            <div class="bio-block">
+                <p>
+                    I was born just outside Seattle, which explains both my love of snowboarding and my deeply complicated relationship with rooting for sports teams. My earliest memories are from Monroe, NY, just outside West Point, where I attended Smith Clove Elementary and harbored serious ambitions of becoming an MLB shortstop. The scouts never called.
+                </p>
+                <p>
+                    Midway through second grade my family moved to South Korea, mostly Daegu, where I spent the next four years living in Asia and becoming a more interesting person than I would have otherwise. It was also in Korea where I picked up soccer and became convinced, for the second time, that professional sports were in my future. I idolized Neymar Jr. and was certain I was destined to be a midfielder. The scouts still never called.
+                </p>
+                <p>
+                    Middle school through high school I settled into suburban Northern Virginia, where I stayed until Vanderbilt let me in.
+                </p>
+                <p>
+                    I study Computer Science and Economics at Vanderbilt University. I question this decision regularly and continue anyway.
+                </p>
+                <p>
+                    When I'm not staring at a compiler error or a demand curve, I'm at a poker table, on a basketball court, or on a mountain with a snowboard. I play piano when the mood strikes, enjoy a good hike, and have genuine aspirations of learning to DJ well someday. I listen to a lot of house music, which is either preparation for that or just a symptom of it. I also enjoy exploring new nightlife scenes wherever I end up, which is probably related.
+                </p>
+            </div>
+
+            <hr class="divider">
+
+            <div class="contact-row">
+                <a href="mailto:cayden.bird@vanderbilt.edu">cayden.bird@vanderbilt.edu</a>
+                <a href="https://www.linkedin.com/in/cayden-bird/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/c-cayden" target="_blank">GitHub</a>
             </div>
         </div>
 
         <div class="tab-content" id="experience">
             <h2>Experience</h2>
-            
             <div class="experience-item">
                 <div class="job-title">Research Intern</div>
                 <div class="company">Vanderbilt University</div>
                 <div class="date">Jan 2026 - Present</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Strategy Consulting Intern</div>
                 <div class="company">Habitat for Humanity International</div>
                 <div class="date">Feb 2025 - Jun 2025</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Research Assistant</div>
                 <div class="company">Virginia Tech College of Engineering</div>
                 <div class="date">Aug 2024 - May 2025</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Head Server</div>
                 <div class="company">Gopchang Story KBBQ</div>
                 <div class="date">Jul 2024 - Jul 2025</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Server</div>
                 <div class="company">Gopchang Story KBBQ</div>
                 <div class="date">Mar 2024 - Jul 2024</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Teacher</div>
                 <div class="company">Best Academy</div>
                 <div class="date">Aug 2023 - Aug 2024</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Teaching Assistant</div>
                 <div class="company">Best Academy</div>
                 <div class="date">Jun 2023 - Aug 2023</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Co-Lead & Fellow</div>
                 <div class="company">Global Leaders of Fairfax County</div>
                 <div class="date">Aug 2023 - May 2024</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Student</div>
                 <div class="company">National Junior Classical League</div>
                 <div class="date">Sep 2022 - May 2024</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Server</div>
                 <div class="company">The Qui Korean BBQ & BAR</div>
                 <div class="date">Jan 2024 - Mar 2024</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Crew Member</div>
                 <div class="company">Tropical Smoothie Cafe</div>
                 <div class="date">Sep 2022 - Nov 2023</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Research Intern</div>
                 <div class="company">William & Mary</div>
                 <div class="date">Jun 2022 - Aug 2022</div>
             </div>
-
             <div class="experience-item">
                 <div class="job-title">Umpire</div>
                 <div class="company">Fairfax Little League Inc</div>
@@ -401,37 +326,31 @@
                 <div class="company">UNICEF</div>
                 <div class="date">Feb 2025 - Present</div>
             </div>
-
             <div class="volunteer-item">
                 <div class="job-title">Volunteer Staff</div>
                 <div class="company">Virginia Science Olympiad</div>
                 <div class="date">Sep 2024 - May 2025</div>
             </div>
-
             <div class="volunteer-item">
                 <div class="job-title">Ambassador</div>
                 <div class="company">The Leukemia & Lymphoma Society</div>
                 <div class="date">Dec 2022 - Dec 2023</div>
             </div>
-
             <div class="volunteer-item">
                 <div class="job-title">Member</div>
                 <div class="company">Key Club International</div>
                 <div class="date">Aug 2022 - May 2024</div>
             </div>
-
             <div class="volunteer-item">
                 <div class="job-title">Treasurer</div>
                 <div class="company">Science National Honor Society</div>
                 <div class="date">Sep 2022 - May 2024</div>
             </div>
-
             <div class="volunteer-item">
                 <div class="job-title">Member</div>
                 <div class="company">National Honor Society</div>
                 <div class="date">Sep 2022 - May 2024</div>
             </div>
-
             <div class="volunteer-item">
                 <div class="job-title">Volunteer Staff</div>
                 <div class="company">U.S. Coast Guard</div>
@@ -441,16 +360,13 @@
 
         <div class="tab-content" id="projects">
             <h2>Projects</h2>
-            
-            <a href="https://github.com/c-cayden" target="_blank" class="github-link">View all on GitHub →</a>
-
+            <a href="https://github.com/c-cayden" target="_blank" class="github-link">View all on GitHub &rarr;</a>
             <div class="project-item">
                 <div class="project-title">
                     <a href="https://github.com/c-cayden/Peony" target="_blank">Peony</a>
                 </div>
                 <div class="project-desc">Next.js hackathon project designed to show pay disparities to promote pay equality</div>
             </div>
-
             <div class="project-item">
                 <div class="project-title">
                     <a href="https://github.com/c-cayden/ENGE1216-Button-Code" target="_blank">ENGE1216 Button Code</a>
@@ -461,7 +377,6 @@
 
         <div class="tab-content" id="awards">
             <h2>Certifications & Awards</h2>
-            
             <h3>Certifications</h3>
             <ul class="cert-list">
                 <li>Wall Street Prep: Accounting & Financial Statement Analysis</li>
@@ -470,7 +385,6 @@
                 <li>Wall Street Prep: US GAAP & IFRS Reporting Differences</li>
                 <li>International Baccalaureate Diploma</li>
             </ul>
-
             <h3>Awards & Honors</h3>
             <ul class="cert-list">
                 <li>Dean's List with Distinction (Virginia Tech)</li>
@@ -489,6 +403,7 @@
                 <p><a href="https://github.com/c-cayden" target="_blank">GitHub</a></p>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -498,14 +413,10 @@
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 const tabName = item.getAttribute('data-tab');
-                
                 navItems.forEach(nav => nav.classList.remove('active'));
                 item.classList.add('active');
-                
                 tabContents.forEach(content => content.classList.remove('active'));
                 document.getElementById(tabName).classList.add('active');
-
-                // Toggle snowboarding background only for About tab
                 if (tabName === 'about') {
                     document.body.classList.add('about-bg');
                 } else {
@@ -514,7 +425,6 @@
             });
         });
 
-        // Set initial background for About tab
         if (document.querySelector('.tab-content.active').id === 'about') {
             document.body.classList.add('about-bg');
         }
