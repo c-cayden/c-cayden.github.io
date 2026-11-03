@@ -139,6 +139,18 @@
             text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
         }
 
+        .cursor {
+            display: inline-block;
+            width: 0.05em;
+            height: 0.9em;
+            margin-left: 0.06em;
+            background: var(--fg);
+            vertical-align: -0.1em;
+            animation: blink 1.05s steps(1) infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
         .links { display: flex; flex-wrap: wrap; gap: 28px; font-size: 16px; }
 
         .links a {
@@ -246,7 +258,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .page.active { animation: none; }
+            .page.active, .cursor { animation: none; }
         }
     </style>
     <noscript>
@@ -268,7 +280,7 @@
         <section class="hero page" id="page-home" aria-label="Introduction">
             <canvas id="snow" aria-hidden="true"></canvas>
             <div class="label">Computer Science &amp; Economics at Vanderbilt</div>
-            <h1>Working on innovative systems at the frontier of technology.</h1>
+            <h1 aria-label="Hey, I'm Cayden."><span id="typed" aria-hidden="true">Hey, I'm Cayden.</span><span class="cursor" aria-hidden="true"></span></h1>
             <div class="links">
                 <a href="mailto:cayden.bird@vanderbilt.edu">Email</a>
                 <a href="https://www.linkedin.com/in/cayden-bird/" target="_blank" rel="noopener">LinkedIn</a>
@@ -398,7 +410,24 @@
             document.title = name === 'home' ? 'Cayden Bird' : name[0].toUpperCase() + name.slice(1) + ' | Cayden Bird';
             window.scrollTo(0, 0);
             onScroll();
-            if (name === 'home') startSnow(); else stopSnow();
+            if (name === 'home') { startSnow(); typeGreeting(); } else stopSnow();
+        }
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* type the greeting the first time home is shown */
+        const typed = document.getElementById('typed');
+        const greeting = typed.textContent;
+        let hasTyped = reduceMotion;
+        function typeGreeting() {
+            if (hasTyped) return;
+            hasTyped = true;
+            typed.textContent = '';
+            let i = 0;
+            (function next() {
+                typed.textContent = greeting.slice(0, ++i);
+                if (i < greeting.length) setTimeout(next, 60 + Math.random() * 70);
+            })();
         }
 
         /* ascii mountains + falling snow, home page only */
@@ -406,7 +435,6 @@
         const ctx = canvas.getContext('2d');
         const CW = 8, CH = 16;
         const COLORS = { far: '#2e3237', near: '#555a61', snow: '#80858c' };
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         let cols, rows, far, near, trees, flakes, raf = null;
 
         // ridge height (in rows from the bottom) built from a few layered sines
