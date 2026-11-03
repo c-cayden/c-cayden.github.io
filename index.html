@@ -13,8 +13,8 @@
         :root {
             --bg: #07090c;
             --fg: #f2f4f6;
-            --text: #a9b0b9;
-            --muted: #6c747e;
+            --text: #f2f4f6;
+            --muted: #f2f4f6;
             --line: rgba(255, 255, 255, 0.1);
             --font: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
             --gutter: clamp(16px, 4vw, 48px);
@@ -68,12 +68,13 @@
         }
 
         .name {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
+            letter-spacing: -0.01em;
             white-space: nowrap;
         }
+
+        .name span { color: rgba(255, 255, 255, 0.5); }
 
         .tabs { display: flex; gap: clamp(14px, 2.5vw, 28px); }
 
@@ -127,15 +128,13 @@
             background: linear-gradient(0deg, rgba(7, 9, 12, 0.85) 0%, rgba(7, 9, 12, 0.4) 35%, rgba(7, 9, 12, 0) 60%);
         }
 
-        .hero .label { color: rgba(255, 255, 255, 0.75); margin-bottom: 18px; }
-
         .hero h1 {
             max-width: 16ch;
             font-size: clamp(36px, min(6vw, 8.5vh), 80px);
             font-weight: 600;
             line-height: 1.02;
             letter-spacing: -0.03em;
-            margin-bottom: 28px;
+            margin-bottom: 14px;
             text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
         }
 
@@ -150,6 +149,13 @@
         }
 
         @keyframes blink { 50% { opacity: 0; } }
+
+        .tagline {
+            font-size: clamp(17px, 1.8vw, 22px);
+            color: var(--text);
+            margin-bottom: 28px;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+        }
 
         .links { display: flex; flex-wrap: wrap; gap: 28px; font-size: 16px; }
 
@@ -225,8 +231,8 @@
         .row .title b { font-weight: 600; }
         .row .title span { color: var(--text); }
         .row .title span::before { content: '|'; margin: 0 10px; color: var(--muted); }
-        .row .meta { grid-column: 1; font-size: 14px; color: var(--muted); }
-        .row .meta span + span::before { content: '|'; margin: 0 8px; opacity: 0.6; }
+        .row .meta { grid-column: 1; font-size: 14px; color: var(--text); }
+        .row .meta span + span::before { content: '|'; margin: 0 8px; color: var(--muted); opacity: 0.6; }
         .row .when { grid-column: 2; grid-row: 1; font-size: 14px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
         .facts.tools { border-top: none; }
@@ -241,7 +247,7 @@
 
         @media (max-width: 640px) {
             header { gap: 8px; }
-            .name { font-size: 14px; }
+            .name { font-size: 15px; }
             .tabs a { font-size: 14px; }
             .links { gap: 22px; }
         }
@@ -251,6 +257,11 @@
             .facts dt { border-bottom: none; padding-bottom: 0; }
             .row { grid-template-columns: 1fr; }
             .row .when { grid-column: 1; grid-row: auto; }
+        }
+
+        /* the name already links home, so drop that tab when space runs out */
+        @media (max-width: 370px) {
+            .tabs a[data-route="home"] { display: none; }
         }
 
         @media (max-height: 480px) {
@@ -268,7 +279,7 @@
 </head>
 <body>
     <header id="header">
-        <a class="name" href="#home">Cayden Bird</a>
+        <a class="name" href="#home">caydenbird/<span id="crumb">home</span></a>
         <nav class="tabs">
             <a href="#home" data-route="home">Home</a>
             <a href="#about" data-route="about">About</a>
@@ -279,8 +290,8 @@
     <main>
         <section class="hero page" id="page-home" aria-label="Introduction">
             <canvas id="snow" aria-hidden="true"></canvas>
-            <div class="label">Computer Science &amp; Economics at Vanderbilt</div>
             <h1 aria-label="Hey, I'm Cayden."><span id="typed" aria-hidden="true">Hey, I'm Cayden.</span><span class="cursor" aria-hidden="true"></span></h1>
+            <p class="tagline">Currently studying Computer Science &amp; Economics at Vanderbilt.</p>
             <div class="links">
                 <a href="mailto:cayden.bird@vanderbilt.edu">Email</a>
                 <a href="https://www.linkedin.com/in/cayden-bird/" target="_blank" rel="noopener">LinkedIn</a>
@@ -290,13 +301,12 @@
 
         <section class="block page" id="page-about">
             <h2>About</h2>
-            <p class="intro">I'm a student at Vanderbilt University studying Computer Science and Economics, based between Washington, D.C. and Nashville.</p>
+            <p class="intro">Based between Washington, D.C. and Nashville.</p>
             <dl class="facts">
                 <dt class="label">Interested in</dt><dd>Autonomous systems</dd>
                 <dt class="label">Upbringing</dt><dd>Washington → Utah → New York → Korea → Virginia</dd>
-                <dt class="label">Member of</dt><dd>Kappa Theta Pi, Change++, KUSA, Owen Investment Fund, AASA</dd>
                 <dt class="label">Rooting for</dt><dd>Seattle Seahawks, Seattle Mariners, Utah Jazz</dd>
-                <dt class="label">Listening to</dt><dd>Omar+, Drake, PARTYNEXTDOOR</dd>
+                <dt class="label">Listening to</dt><dd>Omar+, Drake, PARTYNEXTDOOR, Franky Rizardo</dd>
                 <dt class="label">Off the clock</dt><dd>Snowboarding, poker, basketball, golf, piano, Korean BBQ</dd>
             </dl>
         </section>
@@ -348,18 +358,9 @@
                 </li>
             </ul>
 
-            <div class="label sub">Leadership &amp; Clubs</div>
+            <div class="label sub">Memberships</div>
             <ul class="rows">
-                <li class="row">
-                    <div class="title"><b>Vanderbilt Institute of National Security</b> <span>Student Cohort Member</span></div>
-                    <div class="meta"><span>Nashville, TN</span></div>
-                    <div class="when">Oct 2025 – Apr 2026</div>
-                </li>
-                <li class="row">
-                    <div class="title"><b>UNICEF at Virginia Tech</b> <span>Executive Board</span></div>
-                    <div class="meta"><span>Blacksburg, VA</span></div>
-                    <div class="when">Feb 2025 – May 2025</div>
-                </li>
+                <li class="row"><div class="title">Change++, Kappa Theta Pi, Vanderbilt Institute of National Security, Owen Investment Fund, UNICEF, KUSA, AASA</div></li>
             </ul>
 
             <div class="label sub">Education</div>
@@ -380,7 +381,7 @@
                 </li>
             </ul>
 
-            <div class="label sub">Toolbox</div>
+            <div class="label sub">Skills</div>
             <dl class="facts tools">
                 <dt class="label">Languages</dt><dd>Python, TypeScript, JavaScript, C++, C, Java, SQL, R, MATLAB</dd>
                 <dt class="label">Frameworks</dt><dd>React, Node.js, Express, PostgreSQL, Prisma, MongoDB, Redis</dd>
@@ -407,6 +408,7 @@
                 else a.removeAttribute('aria-current');
             });
             document.body.classList.toggle('on-home', name === 'home');
+            document.getElementById('crumb').textContent = name;
             document.title = name === 'home' ? 'Cayden Bird' : name[0].toUpperCase() + name.slice(1) + ' | Cayden Bird';
             window.scrollTo(0, 0);
             onScroll();
